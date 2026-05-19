@@ -1,0 +1,30 @@
+{
+  "name": "@swissjs/language-core",
+  "version": "0.1.0",
+  "description": "SwissJS language surface — syntax definitions, directives, capabilities, lifecycle registry",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./syntax": "./dist/syntax.js",
+    "./directives": "./dist/directives.js",
+    "./capabilities": "./dist/capabilities.js",
+    "./lifecycle": "./dist/lifecycle.js"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "tsc -b --watch",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist node_modules tsconfig.tsbuildinfo"
+  },
+  "devDependencies": {
+    "@types/node": "18.19.121",
+    "typescript": "5.8.2"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "license": "MIT"
+}

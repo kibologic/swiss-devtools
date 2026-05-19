@@ -1,0 +1,31 @@
+{
+  "name": "@swissjs/grammars",
+  "version": "0.1.0",
+  "description": "SwissJS grammars — TextMate (VS Code), Monarch (Monaco), Tree-sitter roadmap",
+  "type": "module",
+  "exports": {
+    "./textmate": "./src/textmate/swissjs.tmLanguage.json",
+    "./monarch": "./dist/monarch/swissjs.monarch.js"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist node_modules tsconfig.tsbuildinfo"
+  },
+  "peerDependencies": {
+    "monaco-editor": ">=0.40.0"
+  },
+  "peerDependenciesMeta": {
+    "monaco-editor": { "optional": true }
+  },
+  "devDependencies": {
+    "@types/node": "18.19.121",
+    "monaco-editor": "^0.52.0",
+    "typescript": "5.8.2"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "license": "MIT"
+}

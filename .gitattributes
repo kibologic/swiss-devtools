@@ -1,0 +1,4 @@
+*.ui linguist-language=SwissJS
+*.uix linguist-language=SwissJS
+*.ui text eol=lf
+*.uix text eol=lf

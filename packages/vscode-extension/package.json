@@ -1,0 +1,91 @@
+{
+  "name": "swissjs",
+  "displayName": "SwissJS",
+  "description": "SwissJS language support — syntax highlighting, IntelliSense, LSP, diagnostics",
+  "version": "0.1.0",
+  "publisher": "swissjs",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Programming Languages", "Linters", "Snippets"],
+  "keywords": ["swissjs", "swiss", "ui", "uix", "component"],
+  "activationEvents": [
+    "onLanguage:swissjs"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "swissjs",
+        "aliases": ["SwissJS", "swissjs"],
+        "extensions": [".ui", ".uix"],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./assets/icon-light.svg",
+          "dark": "./assets/icon-dark.svg"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "swissjs",
+        "scopeName": "source.swissjs",
+        "path": "./syntaxes/swissjs.tmLanguage.json",
+        "embeddedLanguages": {
+          "meta.embedded.block.html.swissjs": "html",
+          "meta.embedded.block.css.swissjs": "css",
+          "meta.template.expression": "typescript"
+        }
+      }
+    ],
+    "snippets": [
+      {
+        "language": "swissjs",
+        "path": "./snippets/swissjs.json"
+      }
+    ],
+    "configuration": {
+      "title": "SwissJS",
+      "properties": {
+        "swissjs.lsp.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable the SwissJS Language Server for diagnostics, hover, and completions."
+        },
+        "swissjs.lsp.trace": {
+          "type": "string",
+          "enum": ["off", "messages", "verbose"],
+          "default": "off",
+          "description": "Trace LSP communication for debugging."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "swissjs.restartServer",
+        "title": "SwissJS: Restart Language Server"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsc -b && node scripts/copy-grammar.mjs",
+    "dev": "tsc -b --watch",
+    "vscode:prepublish": "pnpm run build",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist node_modules tsconfig.tsbuildinfo"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@swissjs/grammars": "workspace:*",
+    "@swissjs/lsp": "workspace:*",
+    "@types/node": "18.19.121",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.6.0",
+    "typescript": "5.8.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kibologic/swiss-devtools.git"
+  },
+  "license": "MIT"
+}

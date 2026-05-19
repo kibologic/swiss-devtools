@@ -1,0 +1,17 @@
+# GitHub Linguist language definition for SwissJS
+# Add this entry to github-linguist/linguist/lib/linguist/languages.yml
+# when submitting the Linguist PR.
+
+SwissJS:
+  type: programming
+  color: "#3b82f6"
+  extensions:
+    - .ui
+    - .uix
+  tm_scope: source.swissjs
+  ace_mode: text
+  language_id: 99999   # placeholder — Linguist assigns real ID on merge
+  group: JavaScript
+  aliases:
+    - swiss
+    - swissjs

@@ -1,0 +1,30 @@
+{
+  "name": "@swissjs/monaco-language",
+  "version": "0.1.0",
+  "description": "SwissJS language registration for Monaco Editor",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist node_modules tsconfig.tsbuildinfo"
+  },
+  "dependencies": {
+    "@swissjs/grammars": "workspace:*",
+    "@swissjs/language-core": "workspace:*"
+  },
+  "peerDependencies": {
+    "monaco-editor": ">=0.40.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.19.121",
+    "monaco-editor": "^0.52.0",
+    "typescript": "5.8.2"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "license": "MIT"
+}

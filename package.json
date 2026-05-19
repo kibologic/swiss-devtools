@@ -1,0 +1,21 @@
+{
+  "name": "swiss-devtools",
+  "private": true,
+  "version": "0.1.0",
+  "description": "SwissJS language tooling — LSP, grammar, devtools, Monaco, Linguist",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "dev": "pnpm -r run dev",
+    "type-check": "pnpm -r run type-check",
+    "clean": "pnpm -r run clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "@types/node": "18.19.121",
+    "typescript": "5.8.2"
+  },
+  "engines": {
+    "node": ">=18.19.0 <19"
+  },
+  "packageManager": "pnpm@10.12.4"
+}

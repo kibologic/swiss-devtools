@@ -1,0 +1,236 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "SwissJS",
+  "scopeName": "source.swissjs",
+  "fileTypes": ["ui", "uix"],
+  "patterns": [
+    { "include": "#swiss-component-decl" },
+    { "include": "#swiss-state-block" },
+    { "include": "#swiss-lifecycle" },
+    { "include": "#swiss-reactive" },
+    { "include": "#swiss-computed" },
+    { "include": "#swiss-props" },
+    { "include": "#swiss-export-prop" },
+    { "include": "#swiss-decorators" },
+    { "include": "#html-tagged-template" },
+    { "include": "#css-tagged-template" },
+    { "include": "#swiss-directives-in-jsx" },
+    { "include": "source.tsx" }
+  ],
+  "repository": {
+    "swiss-component-decl": {
+      "comment": "component Foo { ... } — transforms to export class Foo extends SwissComponent",
+      "begin": "\\b(component)\\s+([A-Z][A-Za-z0-9_]*)\\s*(?=\\{)",
+      "beginCaptures": {
+        "1": { "name": "keyword.control.component.swissjs" },
+        "2": { "name": "entity.name.type.class.component.swissjs" }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.block.end.swissjs" }
+      },
+      "name": "meta.component.swissjs",
+      "patterns": [
+        { "include": "#swiss-state-block" },
+        { "include": "#swiss-lifecycle" },
+        { "include": "#swiss-reactive" },
+        { "include": "#swiss-computed" },
+        { "include": "#swiss-props" },
+        { "include": "#swiss-export-prop" },
+        { "include": "#swiss-decorators" },
+        { "include": "#html-tagged-template" },
+        { "include": "#css-tagged-template" },
+        { "include": "source.tsx" }
+      ]
+    },
+
+    "swiss-state-block": {
+      "comment": "state { let x: T = v; } — transforms each decl to Signal-backed getter/setter",
+      "begin": "\\b(state)\\s*\\{",
+      "beginCaptures": {
+        "1": { "name": "keyword.control.state.swissjs" }
+      },
+      "end": "\\}",
+      "name": "meta.block.state.swissjs",
+      "patterns": [
+        {
+          "match": "\\b(let|const)\\b",
+          "name": "keyword.other.swissjs"
+        },
+        {
+          "match": "\\b([a-z_][A-Za-z0-9_]*)(?=\\s*:)",
+          "name": "variable.other.reactive.signal.swissjs"
+        },
+        { "include": "source.ts#type-annotation" },
+        { "include": "source.ts#expression" }
+      ]
+    },
+
+    "swiss-lifecycle": {
+      "comment": "mount { }, unmount { }, effect { }, async mount() { }",
+      "patterns": [
+        {
+          "begin": "\\b(async\\s+)?(mount|unmount|effect)\\s*(\\(\\))?\\s*\\{",
+          "beginCaptures": {
+            "1": { "name": "keyword.control.async.swissjs" },
+            "2": { "name": "keyword.control.lifecycle.swissjs" },
+            "3": { "name": "punctuation.definition.parameters.swissjs" }
+          },
+          "end": "\\}",
+          "name": "meta.block.lifecycle.swissjs",
+          "patterns": [
+            { "include": "#html-tagged-template" },
+            { "include": "#css-tagged-template" },
+            { "include": "source.tsx" }
+          ]
+        }
+      ]
+    },
+
+    "swiss-reactive": {
+      "comment": "reactive let x: T = v; — transforms to private field",
+      "match": "\\b(reactive)\\s+(let)\\s+([a-z_][A-Za-z0-9_]*)",
+      "captures": {
+        "1": { "name": "keyword.control.reactive.swissjs" },
+        "2": { "name": "keyword.other.swissjs" },
+        "3": { "name": "variable.other.reactive.swissjs" }
+      }
+    },
+
+    "swiss-computed": {
+      "comment": "computed get x() { } — transforms to private getter",
+      "match": "\\b(computed)\\s+(get)\\s+([a-z_][A-Za-z0-9_]*)",
+      "captures": {
+        "1": { "name": "keyword.control.computed.swissjs" },
+        "2": { "name": "keyword.other.swissjs" },
+        "3": { "name": "entity.name.function.computed.swissjs" }
+      }
+    },
+
+    "swiss-props": {
+      "comment": "props = { ... } — static propTypes declaration",
+      "match": "\\b(props)\\s*(?==)",
+      "captures": {
+        "1": { "name": "keyword.operator.props.swissjs" }
+      }
+    },
+
+    "swiss-export-prop": {
+      "comment": "export let x: T; — component input prop",
+      "match": "^\\s*(export)\\s+(let)\\s+([a-z_][A-Za-z0-9_]*)",
+      "captures": {
+        "1": { "name": "keyword.control.export.swissjs" },
+        "2": { "name": "keyword.other.swissjs" },
+        "3": { "name": "variable.other.prop.swissjs" }
+      }
+    },
+
+    "swiss-decorators": {
+      "patterns": [
+        {
+          "comment": "@requires('cap1', 'cap2') — capability declaration",
+          "begin": "(@)(requires)\\s*(\\()",
+          "beginCaptures": {
+            "1": { "name": "punctuation.decorator.at-sign.swissjs" },
+            "2": { "name": "support.function.decorator.requires.swissjs" },
+            "3": { "name": "punctuation.definition.parameters.begin.swissjs" }
+          },
+          "end": "\\)",
+          "endCaptures": {
+            "0": { "name": "punctuation.definition.parameters.end.swissjs" }
+          },
+          "name": "meta.decorator.requires.swissjs",
+          "patterns": [
+            {
+              "match": "'(network|analytics|payment|[^']*)'",
+              "captures": {
+                "0": { "name": "string.quoted.single.swissjs" },
+                "1": { "name": "support.type.capability.swissjs" }
+              }
+            }
+          ]
+        },
+        {
+          "comment": "@capability, @property, @state, @query, @queryAll, @event, @provide, @inject",
+          "match": "(@)(capability|property|state|query|queryAll|event|provide|inject)\\b",
+          "captures": {
+            "1": { "name": "punctuation.decorator.at-sign.swissjs" },
+            "2": { "name": "support.function.decorator.swissjs" }
+          }
+        }
+      ]
+    },
+
+    "html-tagged-template": {
+      "comment": "html`...` — embedded HTML with expression interpolation",
+      "begin": "\\b(html)(`)",
+      "beginCaptures": {
+        "1": { "name": "support.function.tag.html.swissjs" },
+        "2": { "name": "punctuation.definition.template-expression.begin.swissjs" }
+      },
+      "end": "`",
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.template-expression.end.swissjs" }
+      },
+      "name": "meta.embedded.block.html.swissjs",
+      "contentName": "meta.template.html.swissjs",
+      "patterns": [
+        {
+          "comment": "Swiss directives inside HTML templates",
+          "match": "\\b(v-if|v-for|v-bind|\\*if|\\*for|\\*bind)\\b",
+          "name": "support.type.directive.swissjs"
+        },
+        {
+          "comment": "Expression interpolations ${...}",
+          "begin": "(\\$\\{)",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.template-expression.begin" }
+          },
+          "end": "(\\})",
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.template-expression.end" }
+          },
+          "name": "meta.template.expression",
+          "patterns": [{ "include": "source.tsx" }]
+        },
+        { "include": "text.html.basic" }
+      ]
+    },
+
+    "css-tagged-template": {
+      "comment": "css`...` — embedded CSS",
+      "begin": "\\b(css)(`)",
+      "beginCaptures": {
+        "1": { "name": "support.function.tag.css.swissjs" },
+        "2": { "name": "punctuation.definition.template-expression.begin.swissjs" }
+      },
+      "end": "`",
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.template-expression.end.swissjs" }
+      },
+      "name": "meta.embedded.block.css.swissjs",
+      "contentName": "meta.template.css.swissjs",
+      "patterns": [
+        {
+          "begin": "(\\$\\{)",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.template-expression.begin" }
+          },
+          "end": "(\\})",
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.template-expression.end" }
+          },
+          "name": "meta.template.expression",
+          "patterns": [{ "include": "source.tsx" }]
+        },
+        { "include": "source.css" }
+      ]
+    },
+
+    "swiss-directives-in-jsx": {
+      "comment": "v-if, v-for, v-bind, *if, *for, *bind as JSX attribute names",
+      "match": "\\b(v-if|v-for|v-bind|\\*if|\\*for|\\*bind)\\b",
+      "name": "support.type.directive.swissjs"
+    }
+  }
+}

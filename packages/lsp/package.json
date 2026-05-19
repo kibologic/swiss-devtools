@@ -1,0 +1,30 @@
+{
+  "name": "@swissjs/lsp",
+  "version": "0.1.0",
+  "description": "SwissJS Language Server Protocol implementation",
+  "type": "module",
+  "main": "dist/server/index.js",
+  "bin": {
+    "swiss-language-server": "dist/server/index.js"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "tsc -b --watch",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist node_modules tsconfig.tsbuildinfo"
+  },
+  "dependencies": {
+    "@swissjs/language-core": "workspace:*",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.12"
+  },
+  "devDependencies": {
+    "@types/node": "18.19.121",
+    "typescript": "5.8.2"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "license": "MIT"
+}
