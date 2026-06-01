@@ -1,248 +1,188 @@
 {
-  "Component Skeleton": {
-    "prefix": "swiss-component",
+  "Component Scaffold": {
+    "prefix": "comp",
     "body": [
-      "import { SwissComponent, html, css } from '@swiss/core';",
+      "import { SwissComponent } from '@kibologic/core';",
       "",
-      "/**",
-      " * ${1:ComponentName} component",
-      " */",
-      "export class ${1:ComponentName} extends SwissComponent {",
-      "  static styles = css`",
-      "    :host {",
-      "      display: block;",
-      "    }",
-      "  `;",
+      "component ${1:MyComponent} {",
+      "  props = {",
+      "    ${2:label}: string;",
+      "  };",
+      "",
+      "  state {",
+      "    let ${3:value}: ${4:string} = ${5:''};",
+      "  }",
+      "",
+      "  mounted() {",
+      "    $6",
+      "  }",
       "",
       "  render() {",
-      "    return html`",
-      "      <div class=\"${2:component-class}\">",
-      "        ${3:<!-- Content -->}",
+      "    return (",
+      "      <div>",
+      "        $7",
       "      </div>",
-      "    `;",
+      "    );",
       "  }",
-      "}",
+      "}"
+    ],
+    "description": "Full SwissJS component with props, state, mounted, and render"
+  },
+
+  "Component Simple": {
+    "prefix": "comps",
+    "body": [
+      "import { SwissComponent } from '@kibologic/core';",
       "",
-      "// Register the component",
-      "customElements.define('${4:component-name}', ${1:ComponentName});"
-    ],
-    "description": "Creates a new SwissJS component"
-  },
-  "Template Literal": {
-    "prefix": "html",
-    "body": [
-      "html`${1:content}`"
-    ],
-    "description": "HTML template literal tag"
-  },
-  "CSS Literal": {
-    "prefix": "css",
-    "body": [
-      "css`${1:styles}`"
-    ],
-    "description": "CSS template literal tag"
-  },
-  "Lifecycle - connectedCallback": {
-    "prefix": "connected",
-    "body": [
-      "connectedCallback() {",
-      "  super.connectedCallback();",
-      "  ${1:// Initialization code}",
+      "component ${1:MyComponent} {",
+      "  render() {",
+      "    return (",
+      "      <div>",
+      "        $2",
+      "      </div>",
+      "    );",
+      "  }",
       "}"
     ],
-    "description": "Lifecycle: connectedCallback"
+    "description": "Minimal SwissJS component with just a render method"
   },
-  "Lifecycle - disconnectedCallback": {
-    "prefix": "disconnected",
-    "body": [
-      "disconnectedCallback() {",
-      "  ${1:// Cleanup code}",
-      "  super.disconnectedCallback();",
-      "}"
-    ],
-    "description": "Lifecycle: disconnectedCallback"
-  },
-  "@onMount Decorator": {
-    "prefix": "onmount",
-    "body": [
-      "@onMount()",
-      "${1:methodName}() {",
-      "  ${2:// Code to run when component is mounted}",
-      "}"
-    ],
-    "description": "Add @onMount lifecycle hook"
-  },
-  "@onUpdate Decorator": {
-    "prefix": "onupdate",
-    "body": [
-      "@onUpdate()",
-      "${1:methodName}() {",
-      "  ${2:// Code to run when component updates}",
-      "}"
-    ],
-    "description": "Add @onUpdate lifecycle hook"
-  },
-  "@property Decorator": {
-    "prefix": "prop",
-    "body": [
-      "@property({ type: ${1:type}${2:, reflect: true}${3:, attribute: '${4:attr-name}'} })",
-      "${5:propertyName}${6:: ${7:type}} = ${8:defaultValue};"
-    ],
-    "description": "Add a property with @property decorator"
-  },
-  "@state Decorator": {
+
+  "State Block": {
     "prefix": "state",
     "body": [
-      "@state()",
-      "private ${1:stateName}${2:: ${3:type}} = ${4:defaultValue};"
-    ],
-    "description": "Add a reactive state property"
-  },
-  "@query Decorator": {
-    "prefix": "query",
-    "body": [
-      "@query('${1:selector}')",
-      "private ${2:elementName}${3:!}: ${4:HTMLElement};"
-    ],
-    "description": "Query an element in the component's shadow DOM"
-  },
-  "@queryAll Decorator": {
-    "prefix": "queryall",
-    "body": [
-      "@queryAll('${1:selector}')",
-      "private ${2:elements}${3:!}: NodeListOf<${4:HTMLElement}>;"
-    ],
-    "description": "Query all elements matching a selector in the component's shadow DOM"
-  },
-  "@event Decorator": {
-    "prefix": "event",
-    "body": [
-      "@event('${1:event-name}')",
-      "private handle${2:Event}(event: CustomEvent<${3:EventDetail}>) {",
-      "  ${4:// Event handler code}",
+      "state {",
+      "  let ${1:loading}: boolean = false;",
+      "  let ${2:data}: any = null;",
+      "  let ${3:error}: string = '';",
       "}"
     ],
-    "description": "Add an event handler with @event decorator"
+    "description": "SwissJS reactive state block"
   },
-  "@capability Decorator": {
-    "prefix": "capability",
+
+  "Props Declaration": {
+    "prefix": "props",
     "body": [
-      "@capability('${1:capability-name}')",
-      "private ${2:capability}${3:!}: ${4:CapabilityType};"
+      "props = {",
+      "  ${1:label}: string;",
+      "  ${2:value}?: ${3:number};",
+      "};"
     ],
-    "description": "Request a capability with @capability decorator"
+    "description": "SwissJS component props declaration"
   },
-  "@provide Decorator": {
-    "prefix": "provide",
+
+  "Mounted Hook": {
+    "prefix": "mounted",
     "body": [
-      "@provide({ capability: '${1:capability-name}'${2:, options: ${3:options}} })",
-      "private ${4:provider} = ${5:providerValue};"
-    ],
-    "description": "Provide a capability with @provide decorator"
-  },
-  "@inject Decorator": {
-    "prefix": "inject",
-    "body": [
-      "@inject('${1:service-name}')",
-      "private ${2:service}${3:!}: ${4:ServiceType};"
-    ],
-    "description": "Inject a service with @inject decorator"
-  },
-  "@observe Decorator": {
-    "prefix": "observe",
-    "body": [
-      "@observe('${1:propertyName}')",
-      "private ${2:methodName}(${3:newValue}: ${4:Type}, ${5:oldValue}: ${4:Type}) {",
-      "  ${6:// React to property changes}",
-      "}"
-    ],
-    "description": "Observe property changes with @observe decorator"
-  },
-  "@customElement Decorator": {
-    "prefix": "customelement",
-    "body": [
-      "@customElement('${1:element-name}')",
-      "export class ${2:ElementName} extends SwissComponent {",
-      "  static styles = css`${3:css}`;\n",
-      "  render() {",
-      "    return html`",
-      "      <div class=\"container\">",
-      "        ${4:<!-- Content -->}",
-      "      </div>",
-      "    `;",
+      "async mounted() {",
+      "  try {",
+      "    const res = await fetch('${1:/api/endpoint}');",
+      "    this.${2:data} = await res.json();",
+      "  } catch (e: any) {",
+      "    this.${3:error} = e.message;",
+      "  } finally {",
+      "    this.${4:loading} = false;",
       "  }",
       "}"
     ],
-    "description": "Create a custom element with @customElement decorator"
+    "description": "Async mounted lifecycle hook with fetch pattern"
   },
-  "Event Handler (onclick)": {
-    "prefix": "on",
+
+  "Destroyed Hook": {
+    "prefix": "destroyed",
     "body": [
-      "on${1:click}=\"\\${${2:this.handler}}\""
-    ],
-    "description": "SwissJS event handler attribute"
-  },
-  "Property Binding": {
-    "prefix": "prop",
-    "body": [
-      "${1:property}=\"\\${${2:this.value}}\""
-    ],
-    "description": "SwissJS property binding attribute"
-  },
-  "Event Listener": {
-    "prefix": "event",
-    "body": [
-      "on${1:click}=\"\\${${2:this.handler}}\""
-    ],
-    "description": "SwissJS event listener attribute"
-  },
-  "Conditional Rendering": {
-    "prefix": "if",
-    "body": [
-      "\\${${1:this.condition} ? html\\`${2:content}\\` : ''}"
-    ],
-    "description": "SwissJS conditional rendering with template literals"
-  },
-  "Loop Rendering": {
-    "prefix": "for",
-    "body": [
-      "\\${${1:this.items}.map(${2:item} => html\\`${3:<div>\\${item}</div>}\\`)}"
-    ],
-    "description": "SwissJS loop rendering with template literals"
-  },
-  "Show/Hide Conditional": {
-    "prefix": "show",
-    "body": [
-      "style=\"display: \\${${1:this.condition} ? 'block' : 'none'}\""
-    ],
-    "description": "SwissJS show/hide with conditional styling"
-  },
-  "Two-way Binding": {
-    "prefix": "model",
-    "body": [
-      "value=\"\\${${1:this.property}}\" oninput=\"\\${${2:this.updateProperty}}\""
-    ],
-    "description": "SwissJS two-way data binding with TypeScript"
-  },
-  "Swiss Template": {
-    "prefix": "swiss-template",
-    "body": [
-      "render() {",
-      "  return html`",
-      "    <div class=\"${1:component-name}\">",
-      "      <h1 title=\"\\${${2:this.titleProp}}\">${3:\\${this.title}}</h1>",
-      "      <button onclick=\"\\${${4:this.handleClick}}\">",
-      "        ${5:Click me}",
-      "      </button>",
-      "      \\${${6:this.showContent} ? html`",
-      "        <div>",
-      "          ${7:<!-- Conditional content -->}",
-      "        </div>",
-      "      ` : ''}",
-      "    </div>",
-      "  `;",
+      "destroyed() {",
+      "  $1",
       "}"
     ],
-    "description": "SwissJS template with TypeScript + html template literals"
+    "description": "SwissJS destroyed lifecycle hook for cleanup"
+  },
+
+  "Helper Method": {
+    "prefix": "_m",
+    "body": [
+      "_${1:methodName}(${2:param}: ${3:string}): ${4:string} {",
+      "  return $5;",
+      "}"
+    ],
+    "description": "SwissJS helper method (prefixed with _)"
+  },
+
+  "List Render": {
+    "prefix": "map",
+    "body": [
+      "{this.${1:items}.map((${2:item}: any) => (",
+      "  <div key={${2:item}.${3:id}}>",
+      "    {${2:item}.${4:name}}",
+      "  </div>",
+      "))}"
+    ],
+    "description": "JSX list render with .map()"
+  },
+
+  "Conditional And": {
+    "prefix": "ifa",
+    "body": [
+      "{this.${1:condition} && (",
+      "  <div>$2</div>",
+      ")}"
+    ],
+    "description": "JSX conditional render with &&"
+  },
+
+  "Ternary Render": {
+    "prefix": "tern",
+    "body": [
+      "{this.${1:condition} ? (",
+      "  <div>$2</div>",
+      ") : (",
+      "  <div>$3</div>",
+      ")}"
+    ],
+    "description": "JSX ternary conditional"
+  },
+
+  "Signal": {
+    "prefix": "signal",
+    "body": [
+      "import { Signal } from '@kibologic/core';",
+      "",
+      "export const ${1:myValue}$$ = new Signal<${2:string}>('${3:}');"
+    ],
+    "description": "SwissJS global Signal"
+  },
+
+  "Fetch Pattern": {
+    "prefix": "fetchm",
+    "body": [
+      "state {",
+      "  let ${1:items}: any[] = [];",
+      "  let loading: boolean = true;",
+      "  let error: string = '';",
+      "}",
+      "",
+      "async mounted() {",
+      "  try {",
+      "    const res = await fetch('${2:/api/items}');",
+      "    if (!res.ok) throw new Error(res.statusText);",
+      "    this.${1:items} = await res.json();",
+      "  } catch (e: any) {",
+      "    this.error = e.message;",
+      "  } finally {",
+      "    this.loading = false;",
+      "  }",
+      "}"
+    ],
+    "description": "Full fetch-in-mounted pattern with loading/error/data state"
+  },
+
+  "SVG Data URI Helper": {
+    "prefix": "svguri",
+    "body": [
+      "_svgDataUrl(path: string): string {",
+      "  const svg = '<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"${1:16}\" height=\"${1:16}\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"' + path + '\" /></svg>';",
+      "  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);",
+      "}"
+    ],
+    "description": "SVG data URI helper — use <img src={this._svgDataUrl(path)}> (inline SVG is invisible in SwissJS)"
   }
 }
