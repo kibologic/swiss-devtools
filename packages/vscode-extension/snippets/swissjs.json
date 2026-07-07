@@ -2,7 +2,7 @@
   "Component Scaffold": {
     "prefix": "comp",
     "body": [
-      "import { SwissComponent } from '@kibologic/core';",
+      "import { SwissComponent } from '@swissjs/core';",
       "",
       "component ${1:MyComponent} {",
       "  props = {",
@@ -32,7 +32,7 @@
   "Component Simple": {
     "prefix": "comps",
     "body": [
-      "import { SwissComponent } from '@kibologic/core';",
+      "import { SwissComponent } from '@swissjs/core';",
       "",
       "component ${1:MyComponent} {",
       "  render() {",
@@ -144,7 +144,7 @@
   "Signal": {
     "prefix": "signal",
     "body": [
-      "import { Signal } from '@kibologic/core';",
+      "import { Signal } from '@swissjs/core';",
       "",
       "export const ${1:myValue}$$ = new Signal<${2:string}>('${3:}');"
     ],
