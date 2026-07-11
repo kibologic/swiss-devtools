@@ -40,7 +40,7 @@ Phase 6 added an optional typed telemetry path in core (non-breaking):
 
 - Install dependencies at the monorepo root.
 - From the monorepo root:
-  - `npm run dev` or run the Vite dev server from `packages/devtools/runtime_inspector`.
+  - `npm run dev` or run the Vite dev server from `tools/runtime-inspector`.
 - Open the dev server URL in the browser. Ensure the target app enables the devtools bridge.
 
 ## State Snapshots and Restore

@@ -3,6 +3,7 @@
   "displayName": "SwissJS",
   "description": "SwissJS language support — syntax highlighting, IntelliSense, LSP, diagnostics",
   "version": "0.1.0",
+  "type": "module",
   "publisher": "swissjs",
   "engines": { "vscode": "^1.85.0" },
   "categories": ["Programming Languages", "Linters", "Snippets"],

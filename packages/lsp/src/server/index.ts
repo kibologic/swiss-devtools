@@ -7,7 +7,7 @@ import {
   type InitializeResult,
   TextDocumentSyncKind,
   CompletionItemKind,
-  SemanticTokensLegend,
+  type SemanticTokensLegend,
 } from 'vscode-languageserver/node.js';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { parseDocument } from '../parser/swiss-parser.js';
