@@ -7,17 +7,16 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "node ../../cli/dist/main.js dev",
-    "build": "node ../../cli/dist/main.js build",
+    "dev": "vite",
+    "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint src --ext .ts,.js,.ui",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@swissjs/core": "workspace:*"
+    "@swissjs/core": "^1.2.5"
   },
   "devDependencies": {
-    "@swissjs/cli": "workspace:*",
     "vite": "^5.0.0",
     "typescript": "^5.0.0",
     "@types/node": "^20.0.0",
