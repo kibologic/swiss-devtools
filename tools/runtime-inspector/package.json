@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@swissjs/core": "workspace:*"
+    "@swissjs/core": "^1.2.5"
   },
   "devDependencies": {
     "typescript": "^5.8.2",
