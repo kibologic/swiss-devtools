@@ -124,8 +124,8 @@ importers:
   tools/capability-explorer:
     dependencies:
       '@swissjs/core':
-        specifier: ^1.2.5
-        version: 1.2.5
+        specifier: ^1.2.8
+        version: 1.2.8(reflect-metadata@0.2.2)
     devDependencies:
       '@types/node':
         specifier: ^20.0.0
@@ -151,8 +151,8 @@ importers:
   tools/runtime-inspector:
     dependencies:
       '@swissjs/core':
-        specifier: ^1.2.5
-        version: 1.2.5
+        specifier: ^1.2.8
+        version: 1.2.8(reflect-metadata@0.2.2)
     devDependencies:
       typescript:
         specifier: ^5.8.2
@@ -164,8 +164,8 @@ importers:
   tools/template-debugger:
     dependencies:
       '@swissjs/core':
-        specifier: ^1.2.5
-        version: 1.2.5
+        specifier: ^1.2.8
+        version: 1.2.8(reflect-metadata@0.2.2)
     devDependencies:
       typescript:
         specifier: ^5.8.2
@@ -589,8 +589,10 @@ packages:
     resolution: {integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==}
     engines: {node: '>=18'}
 
-  '@swissjs/core@1.2.5':
-    resolution: {integrity: sha512-GDuhYS/7G0WCAmZhkXqn9d6If0uvP+jAbZMecYQT6XpCAVdqEQ+S+aQGhLgKe7AnfB0tdq7aoLsRN056TQ4r/g==}
+  '@swissjs/core@1.2.8':
+    resolution: {integrity: sha512-zXpncKM+QdaOdBLW4kyQtXrUeH1iA0bVsQ0Ex7UGh9wr0nh4uVeJuMlUkdQ5TVJ93BcYh9pHMKU5drRnUo4QuA==}
+    peerDependencies:
+      reflect-metadata: ^0.2.2
 
   '@swissjs/security@1.2.1':
     resolution: {integrity: sha512-xg8rQ6loUebEJiqUOREOxMDNqTU/Kg1zv1VwrykEjIoPA8dl+75Ab1VhmnuG0OeQBPw3pZOemBkizZTbLrN1xg==}
@@ -1663,6 +1665,9 @@ packages:
     resolution: {integrity: sha512-9u/sniCrY3D5WdsERHzHE4G2YCXqoG5FTHUiCC4SIbr6XcLZBY05ya9EKjYek9O5xOAwjGq+1JdGBAS7Q9ScoA==}
     engines: {node: '>= 6'}
 
+  reflect-metadata@0.2.2:
+    resolution: {integrity: sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==}
+
   require-from-string@2.0.2:
     resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
     engines: {node: '>=0.10.0'}
@@ -2390,10 +2395,11 @@ snapshots:
 
   '@sindresorhus/merge-streams@2.3.0': {}
 
-  '@swissjs/core@1.2.5':
+  '@swissjs/core@1.2.8(reflect-metadata@0.2.2)':
     dependencies:
       '@swissjs/security': 1.2.1
       '@swissjs/shared': 1.2.1
+      reflect-metadata: 0.2.2
 
   '@swissjs/security@1.2.1': {}
 
@@ -3605,6 +3611,8 @@ snapshots:
       string_decoder: 1.3.0
       util-deprecate: 1.0.2
     optional: true
+
+  reflect-metadata@0.2.2: {}
 
   require-from-string@2.0.2: {}
 
