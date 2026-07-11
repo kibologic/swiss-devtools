@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@swissjs/core": "^1.2.5"
+    "@swissjs/core": "^1.2.8"
   },
   "devDependencies": {
     "typescript": "^5.8.2",
