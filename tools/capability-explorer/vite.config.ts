@@ -6,9 +6,10 @@
 
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import { swissjs } from '@swissjs/vite-plugin';
 
 export default defineConfig({
-  plugins: [],
+  plugins: [swissjs()],
   build: {
     outDir: 'dist',
     lib: {
